@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import fetchTotalCount from "./utils/fetchTotalCount";
+import fetchAllStarredRepos from "./utils/fetchAllStarredRepos";
+
+fetchTotalCount()
+  .then(fetchAllStarredRepos)
+  .then(console.log);
 
 class App extends Component {
   render() {
