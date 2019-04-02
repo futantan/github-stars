@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { authWithGitHub } from './auth/authWithGitHub';
-import { getTokenFromLocal, setTokenToLocal } from './storage/storage';
-import fetchTotalCount from './request/fetchTotalCount';
-import fetchAllStarredRepos from './request/fetchAllStarredRepos';
-import { setTokenToRequestHeader } from './request/request';
 
 class App extends Component {
-  componentDidMount() {
-    authWithGitHub()
-      .then(setTokenToLocal)
-      .then(getTokenFromLocal)
-      .then(setTokenToRequestHeader)
-      .then(fetchTotalCount)
-      .then(fetchAllStarredRepos)
-      .then((v) => console.log(JSON.stringify(v)));
-  }
-
   render() {
     return (
       <div className="App">
