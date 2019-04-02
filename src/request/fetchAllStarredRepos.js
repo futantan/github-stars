@@ -6,7 +6,12 @@ const MAX_COUNT_PER_PAGE = 100;
 
 const fetchSinglePageData = page => {
   const extractNameUrlAndLanguage = R.compose(
-    R.map(R.pick(['html_url', 'name', 'language', 'stargazers_count'])),
+    R.map(({ html_url, name, language, stargazers_count }) => ({
+      name,
+      url: html_url,
+      language,
+      starCount: stargazers_count
+    })),
     R.prop('data')
   );
   return request
