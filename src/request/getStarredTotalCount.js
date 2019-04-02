@@ -1,19 +1,19 @@
-import * as R from "ramda";
-import { parse } from "querystring";
+import * as R from 'ramda';
+import { parse } from 'querystring';
 
 const getLastPaginationAPIUrlFromLink = R.compose(
   R.last,
   R.match(/<(.*)>/),
   R.last,
-  R.split(",")
+  R.split(',')
 );
 
 const getPageFromUrl = R.compose(
   parseInt,
-  R.prop("page"),
+  R.prop('page'),
   parse,
   R.last,
-  R.split("?")
+  R.split('?')
 );
 
 const getStarredTotalCount = R.compose(

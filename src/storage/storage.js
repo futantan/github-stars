@@ -1,4 +1,4 @@
-const TOKEN_KEY = "github-token";
+const TOKEN_KEY = 'github-token';
 
 export const isLoggedIn = () => !!window.localStorage.getItem(TOKEN_KEY);
 export const setTokenToLocal = ({ token }) =>

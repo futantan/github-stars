@@ -15,6 +15,7 @@ const fetchSinglePageData = page => {
 };
 
 const fetchAllStarredRepos = total =>
+  // prettier-ignore
   axios.all(R.map(
     fetchSinglePageData,
     R.range(1, Math.ceil(total / MAX_COUNT_PER_PAGE) + 1)
