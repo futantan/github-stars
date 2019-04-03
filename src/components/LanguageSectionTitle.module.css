@@ -1,0 +1,12 @@
+.languageName {
+  font-family: SourceSansPro-SemiBold;
+  font-size: 36px;
+  color: rgba(255, 255, 255, 0.87);
+  letter-spacing: 0.29px;
+  text-decoration: none;
+}
+
+.languageName::before {
+  content: '#';
+  margin-right: 6px;
+}

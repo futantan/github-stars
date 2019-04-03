@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import RepoList from './components/RepoList';
+import RepoSction from './components/RepoSection.js';
 import mock from './mock';
 import * as R from 'ramda';
 
@@ -10,7 +10,7 @@ console.log(data);
 const App = () =>
   R.map(
     ([language, repos]) => (
-      <RepoList key={language} language={language} repos={repos} />
+      <RepoSction key={language} language={language} repos={repos} />
     ),
     R.toPairs(data)
   );
