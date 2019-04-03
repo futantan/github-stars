@@ -5,7 +5,7 @@ import * as R from 'ramda';
 const MAX_COUNT_PER_PAGE = 100;
 
 const fetchSinglePageData = page => {
-  const extractNameUrlAndLanguage = R.compose(
+  const extractFields = R.compose(
     R.map(({ html_url, name, language, stargazers_count }) => ({
       name,
       url: html_url,
@@ -16,7 +16,7 @@ const fetchSinglePageData = page => {
   );
   return request
     .get(`/users/futantan/starred?per_page=${MAX_COUNT_PER_PAGE}&page=${page}`)
-    .then(extractNameUrlAndLanguage);
+    .then(extractFields);
 };
 
 const fetchAllStarredRepos = total =>
