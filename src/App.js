@@ -13,6 +13,7 @@ import {
 import fetchTotalCount from './request/fetchTotalCount';
 import fetchAllStarredRepos from './request/fetchAllStarredRepos';
 import { setTokenToRequestHeader } from './request/request';
+import getUsernameFromPath from './utils/getUsernameFromPath';
 
 const APP_STATUS = { Loading: 'Loading', Failed: 'Failed', Succeed: 'Succeed' };
 
@@ -24,14 +25,15 @@ const App = () => {
   // prettier-ignore
   const handleAppFailed = R.compose(removeTokenFromLocal, markAppStatusFailed);
 
+  const username = getUsernameFromPath();
   useEffect(() => {
     if (isLoggedIn()) {
       Promise.resolve()
 
         .then(getTokenFromLocal)
         .then(setTokenToRequestHeader)
-        .then(fetchTotalCount)
-        .then(fetchAllStarredRepos)
+        .then(fetchTotalCount(username))
+        .then(fetchAllStarredRepos(username))
         .then(updateResponse)
         .then(markAppStatusSucceed)
         .catch(handleAppFailed);
@@ -41,8 +43,8 @@ const App = () => {
 
         .then(getTokenFromLocal)
         .then(setTokenToRequestHeader)
-        .then(fetchTotalCount)
-        .then(fetchAllStarredRepos)
+        .then(fetchTotalCount(username))
+        .then(fetchAllStarredRepos(username))
         .then(updateResponse)
         .then(markAppStatusSucceed);
     }

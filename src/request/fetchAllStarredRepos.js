@@ -4,7 +4,7 @@ import * as R from 'ramda';
 
 const MAX_COUNT_PER_PAGE = 100;
 
-const fetchSinglePageData = page => {
+const fetchSinglePageData = username => page => {
   const extractFields = R.compose(
     R.map(({ html_url, name, language, stargazers_count }) => ({
       name,
@@ -15,14 +15,16 @@ const fetchSinglePageData = page => {
     R.prop('data')
   );
   return request
-    .get(`/users/futantan/starred?per_page=${MAX_COUNT_PER_PAGE}&page=${page}`)
+    .get(
+      `/users/${username}/starred?per_page=${MAX_COUNT_PER_PAGE}&page=${page}`
+    )
     .then(extractFields);
 };
 
-const fetchAllStarredRepos = total =>
+const fetchAllStarredRepos = username => total =>
   // prettier-ignore
   axios.all(R.map(
-    fetchSinglePageData,
+    fetchSinglePageData(username),
     R.range(1, Math.ceil(total / MAX_COUNT_PER_PAGE) + 1)
   )).then(R.unnest);
 
