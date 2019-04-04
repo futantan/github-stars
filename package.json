@@ -2,7 +2,6 @@
   "name": "stars-galaxy",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://futantan.github.io/stars-galaxy",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
